@@ -12,9 +12,7 @@ tags: [Paper Review, Explainable AI]
 
 <br/>
 
-<br/>
-
-## 0. Trust Problem
+## <b>Trust Problem</b>  
 1. 우리가 개발한 모델은 어디서든 좋은 성능을 낼 것이라 신뢰한다.  
   
 2. 우리가 개발한 모델이 제시한 결과물을 신뢰한다. 
@@ -66,7 +64,7 @@ tags: [Paper Review, Explainable AI]
 <br/>
 
 <br/>
-## LIME을 구현하는 4단계  
+## <b>LIME을 구현하는 4단계</b>  
 1. Input을 간단한 형태로 가공한다.  -- <b>x를 x'로 가공한다.  </b>
 <br>
 2. 가공된 Input과 비슷한 데이터를 창조(sampling)한다. -- <b>x'와 유사한 z' 를 만든다.  </b>
