@@ -7,93 +7,77 @@ tags: [Paper Review, Distiributional Losses, Time Series]
 
 <br/>
 
-<br/>
-
-최근의 연구들에서 범용적으로 사용되던 quadratic loss의 한계점을 지적하는 경우가 많다.  
-
-해당 논문은 기존 로스의 한계점을 꽤 논리적으로 분석했고 그럴듯한 대안을 제시한다.  
-    
-저자가 수학적 조예가 깊은 사람이라 읽는데 조금 어려움은 있었지만 접근법과 성능면에서 분명 읽을 가치가 있는 논문이다.  
-
-여기서 제안된 <b>Extreme Valuee Loss</b>는 risk management 분야에서 자주 등장하는 EVT(extreme value theorem)에 기초하고 있다.  
-
-따라서 논문을 읽기 앞서 GRU(gate recurrent unit), EVT, Binary Cross Entropy의 개념을 보고 온다면 좋을 것 같다.  
+최근의 연구들에서 범용적으로 사용되던 quadratic loss의 한계점을 지적하는 경우가 많다. 해당 논문은 기존 로스의 한계점을 꽤 논리적으로 분석했고 그럴듯한 대안을 제시한다. 저자가 수학적 조예가 깊은 사람이라 읽는데 조금 어려움은 있었지만 접근법과 성능면에서 분명 읽을 가치가 있는 논문이다. 여기서 제안된 <b>Extreme Valuee Loss</b>는 risk management 분야에서 자주 등장하는 EVT(extreme value theorem)에 기초하고 있다. 따라서 논문을 읽기 앞서 GRU(gate recurrent unit), EVT, Binary Cross Entropy의 개념을 보고 온다면 좋을 것 같다.  
 
 <br/>
 
-<br/>
-
-## 00.  Paper Summary  
-#### Contribution 01.  
+## <b>Paper Summary</b>  
+#### <b>Contribution 01.</b>  
 Formal analysis on why deep neural network suffers extreme problems during predicting time series data with extreme value  
 <br/>  
-#### Contribution 02.  
+#### <b>Contribution 02.</b>  
 Propose a novel loss function called Extreme Value Loss (EVL) based on extreme value theory  
 <br/>  
-#### Contribution 03.  
+#### <b>Contribution 03.</b>  
 Propose a brand-new Memory Network based neural architecture to memorize extreme events in history  
 
 <br/>
 
-<br/>
-
-## 01.  Preliminaries
-#### Time Series Prediction  
+## <b>Preliminaries</b>
+#### <b>Time Series Prediction</b>  
 Optimization Goal: 과거 1d 정보를 인풋으로 실제와 예측의 차이를 최소화하도록 모델을 학습  
 
-Quadratic loss를 최소화하는 것을 기본으로 많은 모델이 등장, 최근에는 LSTM에서 forget term을 추가한 GRU가 많이 쓰이고 있다.  
+Quadratic loss를 최소화하는 것을 기본으로 많은 모델이 등장  
+  
+최근에는 LSTM에서 forget term을 추가한 GRU가 많이 쓰이고 있다.  
 <br/>  
-#### Extreme Events  
+#### <b>Extreme Events</b>  
 일반적으로 실제 값을 기준으로하여 +/- 방향으로 임의의 threshold를 설정하고 {-1,0,1}로 발생 여부를 분류한다.  
 <br/>  
-#### Heavy-Tail Distribution  
+#### <b>Heavy-Tail Distribution</b>  
 극값을 가질 확률이 큰 분포, 범용적으로 사용되는 Gaussian / Poisson 분포는 light-tail Distribution  
 
-일반적으로 light - tail 형태를 가정하고 모델을 학습하면 평균은 잘 맞출지 몰라도 꼬리 부분의 정보를 손실하게 된다.  
+light - tail 형태를 가정하고 모델을 학습하면 평균은 잘 맞출지 몰라도 꼬리 부분의 정보를 손실하게 된다.  
 <br/>
-#### EVT (Extreme Value Theory)  
+#### <b>EVT (Extreme Value Theory)</b>  
 EVT studies the distribution of maximum in observed sample  
 
 Maximum of Random Variable의 분포를 추정하는 것을 목적으로 한다.  
 
 <b>간단히 생각해서 정규 분포의 꼬리 부분을 뚝 자른 후, 잘라진 부분의 분포를 추정하는 것이라 볼 수 있다.</b>  
 
-Maximum distribution의 y를 추정하는 방식은 (1) Block maxima, (2) Peaks over threshold 두 가지로 나눌 수 있는데  
+Maximum distribution의 y를 추정하는 방식은  
 
-각 방식에 따라 Generalized된 확률변수의 값이 조금 달라지게 된다. 해당 논문에서는 (1)의 방식을 택했고 아래와 같다.  
+(1) Block maxima  
+  
+(2) Peaks over threshold  
+  
+두 가지로 나눌 수 있는데 각 방식에 따라 Generalized된 확률변수의 값이 조금 달라지게 된다.  
+  
+해당 논문에서는 (1)의 방식을 택했고 아래와 같다.  
 <br/>  
-<center><img src="/assets/img/pr/evl/evlone.jpg"></center>  
+<img src="/assets/img/pr/evl/evlone.jpg">  
 <br/>
-여기서 분포의 형태를 결정하는 감마는 하이퍼 파라미터로 모델의 학습 과정에서 우리가 결정해주면 된다.  
-
-확률 변수를 정의하고 선형 변환을 통해 분포를 추정하는 과정은 고민하지 않는 것이 정신 건강에 좋다. 눈으로 보면 아래와 같다.  
+여기서 분포의 형태를 결정하는 감마는 하이퍼 파라미터로 모델의 학습 과정에서 우리가 결정해주면 된다. 확률 변수를 정의하고 선형 변환을 통해 분포를 추정하는 과정은 고민하지 않는 것이 정신 건강에 좋다. 눈으로 보면 아래와 같다.  
 <br/>  
-<center><img src="/assets/img/pr/evl/evltwo.jpg"></center>  
+<img src="/assets/img/pr/evl/evltwo.jpg">  
 <center><small>감마의 값이 커질수록 꼬리가 두꺼운 분포가 된다</small></center>  
 <br/>  
 
-#### Modeling the tail  
+#### <b>Modeling the tail</b>  
 일반화한 분포를 사용하여 Extreme Event가 발생할 수 있는 확률에 대한 모델링이 가능하다.  
 
 아래의 크사이도 역시 하이퍼 파라미터로 이상치라 판단할 수 있는 임계값이라 볼 수 있다.  
 <br/>  
-<center><img src="/assets/img/pr/evl/evlthree.jpg"></center>  
+<img src="/assets/img/pr/evl/evlthree.jpg">  
 <br/>  
 
-#### Empirical Distribution After Optimization  
-최적화의 목적함수인 minimizing quadratic loss는 x에 대한 y의 조건부 확률의 likelihood를 maximize하는 것과 동치이다.  
-
-따라서 문제를 sample에 대한 조건부 확률값을 모두 곱한 것을 최대화하는 것으로 치환하고 나면  
-
-이것이 non parametric Gaussian Kerenl을 통해 KDE를 수행하는 것과 같다고 한다. (그냥 납득하고 넘어간다 자세한 설명이 없다)  
-
-이것은 Extreme Modeling을 수행하는데 많은 제약을 갖게 만든다고 저자는 말한다. 그리고 이제서야 본론으로 넘어갈 수 있다.  
+#### <b>Empirical Distribution After Optimization</b>  
+최적화의 목적함수인 minimizing quadratic loss는 x에 대한 y의 조건부 확률의 likelihood를 maximize하는 것과 동치이다. 따라서 문제를 sample에 대한 조건부 확률값을 모두 곱한 것을 최대화하는 것으로 치환하고 나면 이것이 non parametric Gaussian Kerenl을 통해 KDE를 수행하는 것과 같다고 한다. (그냥 납득하고 넘어간다 자세한 설명이 없다) 이것은 Extreme Modeling을 수행하는데 많은 제약을 갖게 만든다고 저자는 말한다. 그리고 이제서야 본론으로 넘어갈 수 있다.  
 
 <br/>
 
-<br/>
-
-## 02.  Why Deep NN could suffer Extreme Event Problem
+## <b>Why Deep NN could suffer Extreme Event Problem</b>  
 Since nonparametric kernel density estimator only works well with sufficient samples  
 the performance therefore is expected to decrease at the tail part of the data  
 <br/>
