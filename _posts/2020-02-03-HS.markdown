@@ -1,12 +1,11 @@
 ---
-title: Improving regression performance with distributional losses
+title: Improving regression performance with distributional losses(ICML 2018)
 date: 2020-02-03 00:00:00 +0000
 catagories: [Paper Review]
 tags: [Paper Review, Distiributional Losses]
 ---
 
 <br/>
-Improving regression performance with distributional losses(ICML 2018)  
   
 기존의 0/1 라벨이 아닌 Soft Target을 사용하는 것이 여러 분류 문제의 성능 향상에 기여한다는 것이 정설이 되어가고 있다. Soft Target을 사용하는 방법에는 단순히 노이즈를 추가하거나, Knowledge Distillation을 사용하는 등의 방법이 있다. 특히 이미 강화학습 분야에서는 모델이 분포를 학습하는 것이 왜 성능을 향상시키는가에 대한 증거가 존재한다. 해당 논문에서는 이것을 일반화하여 범용적인 Regression 문제에서 적용가능한 새로운 형태의 Loss를 제안한다. 또한 단순히 제안과 실험에서 끝내는 것이 아니라 성능 향상의 이유를 수학적으로 추론한 부분이 흥미롭다.  
 
