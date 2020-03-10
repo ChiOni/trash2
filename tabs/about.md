@@ -1,5 +1,5 @@
 ---
-title: <b>About</b>
+title: About
 
 # The About page
 # v2.0
