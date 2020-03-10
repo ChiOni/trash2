@@ -1,3 +1,5 @@
+title: About Me
+
 ---
 # The About page
 # v2.0
@@ -5,8 +7,6 @@
 # © 2017-2019 Cotes Chung
 # MIT License
 ---
-# <b>About Me</b>
-<br/>
 <b> 취미 </b> 따릉이 타는 거  
 
 <b> 맛있는 거 </b> 고구마 피자, 치킨 와플  
