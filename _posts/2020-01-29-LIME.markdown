@@ -1,9 +1,8 @@
 ---
 title: Why Should I Trust You? (KDD 2016)
 date: 2020-01-29 00:00:00 +0000
-categories: [Paper Review]
+categories: [Paper Review]  
 tags: [Paper Review, Explainable AI]
-
 ---
 
 <br/>
