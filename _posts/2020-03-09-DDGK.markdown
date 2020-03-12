@@ -18,3 +18,7 @@ tags: [Paper Review, Graph Neural Network, Graph Classification]
 <img src="/assets/img/pr/ddgk/ddgktwo.jpg">  
 <br/>
 그리고 이런 복잡한 문제를 해결하기 위한 여러 kernel method들 중, 논문에서는 2011년에 제안된 WL-Kernel(Weisfeiler-Lehman Kernel)에 대한 언급이 많이 되는데 깊게 이해하는 것은 나중으로 미루고 우선 컨셉을 이해해보자.
+
+
+
+실험실험실험
