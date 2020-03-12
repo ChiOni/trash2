@@ -22,6 +22,7 @@ check_status() {
   fi
 }
 
+alias python='winpty python.exe'
 
 update_files() {
   python _scripts/py/init_all.py
