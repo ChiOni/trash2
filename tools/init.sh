@@ -22,8 +22,6 @@ check_status() {
   fi
 }
 
-export PATH="$PATH:/C/Users/littl/AppData/Local/Programs/Python/Python"
-alias python='winpty python.exe'
 
 update_files() {
   python _scripts/py/init_all.py
