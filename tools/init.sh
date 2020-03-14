@@ -8,9 +8,9 @@
 
 set -eu
 
-CATEGORIES=true
-TAGS=true
-LASTMOD=true
+CATEGORIES=false
+TAGS=false
+LASTMOD=false
 
 WORK_DIR=$(dirname $(dirname $(realpath "$0")))
 
@@ -42,7 +42,7 @@ commit() {
     git add tags/
     if [[ $CATEGORIES = true ]]; then
       msg+=","
-    else 
+    else
       msg+=" the"
     fi
     msg+=" Tags"
